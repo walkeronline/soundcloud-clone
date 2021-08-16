@@ -1,0 +1,15 @@
+ul {
+	list-style-type: none;
+	font-family: sans-serif;
+}
+
+a {
+	font-family: sans-serif;
+	text-decoration: none;
+	color: rgba(62, 181, 149, 1);
+	margin-right: 25px;
+}
+
+a:visited {
+	color: rgba(62, 181, 149, 1);
+}

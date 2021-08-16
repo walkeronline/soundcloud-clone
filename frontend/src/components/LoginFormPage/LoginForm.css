@@ -1,0 +1,32 @@
+form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: left;
+	width: fit-content;
+
+	font-family: sans-serif;
+}
+
+input {
+	width: 100%;
+	height: 2em;
+	margin: 10px 0px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+button {
+	width: 5em;
+	height: 2em;
+	background-color: rgba(62, 181, 149, 1);
+	border: 2px solid rgba(62, 181, 149, 1);
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: rgba(62, 181, 149, 0.5);
+	border: 2px solid rgba(62, 181, 149, 0);
+	transition: background-color 0.3s, border 0.3s;
+}

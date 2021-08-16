@@ -1,16 +1,8 @@
 {
 	"development": {
-		"username": "auth_app",
-		"password": "mMY0i0QhrlHR",
-		"database": "auth_db",
-		"host": "127.0.0.1",
 		"dialect": "postgres"
 	},
 	"test": {
-		"username": "auth_app",
-		"password": "mMY0i0QhrlHR",
-		"database": "auth_db",
-		"host": "127.0.0.1",
 		"dialect": "postgres"
 	},
 	"production": {

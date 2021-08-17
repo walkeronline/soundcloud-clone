@@ -1,4 +1,4 @@
-/* :root {
+:root {
 	--primary-accent: #f50;
 	--light-gray: #f2f2f2;
 	--dark-gray: #fff;
@@ -8,12 +8,26 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: sans-serif;
 }
 
 .main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
 	width: 1180px;
 	height: 2533.97px;
 	padding: 0px 30px;
 	margin: 0px 136px;
-	border: 2px solid var(--primary-accent);
-} */
+}
+
+#splash-acc-button {
+	padding: 10px 25px;
+	border: 1px solid var(--primary-accent);
+	border-radius: 4px;
+	color: var(--light-gray);
+	background: #f50;
+	font-size: 18px;
+	font-weight: lighter;
+}

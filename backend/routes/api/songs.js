@@ -72,11 +72,14 @@ router.delete(
 );
 
 router.get(
-	'/all',
+	'/all/:userId',
 	asyncHandler(async (req, res) => {
-		const songs = await Song.findAll();
-		console.log(songs);
-		// res.json({ songs });
+		const { userId } = req.params;
+		const songs = await Song.findAll({
+			where: { userId },
+		});
+		// console.log(songs);
+		res.json({ songs });
 	})
 );
 

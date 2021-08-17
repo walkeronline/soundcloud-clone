@@ -5,7 +5,8 @@ import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
-// import SplashPage from './components/SplashPage';
+import SplashPage from './components/SplashPage';
+import SongPage from './components/SongPage';
 
 function App() {
 	const dispatch = useDispatch();
@@ -20,13 +21,16 @@ function App() {
 			{isLoaded && (
 				<Switch>
 					<Route exact path="/">
-						{/* <SplashPage /> */}
+						<SplashPage />
 					</Route>
 					<Route path="/login">
 						<LoginFormPage />
 					</Route>
 					<Route path="/signup">
 						<SignupFormPage />
+					</Route>
+					<Route path="/songs/:songId">
+						<SongPage />
 					</Route>
 				</Switch>
 			)}

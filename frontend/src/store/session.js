@@ -3,6 +3,8 @@ import { csrfFetch } from './csrf';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
+const SET_SONG = 'song/setSong';
+
 const setUser = (user) => {
 	return {
 		type: SET_USER,
@@ -14,6 +16,22 @@ const removeUser = () => {
 	return {
 		type: REMOVE_USER,
 	};
+};
+
+const setSong = (song) => {
+	return {
+		type: SET_SONG,
+		payload: song,
+	};
+};
+
+export const getSong = (songId) => async (dispatch) => {
+	const response = await csrfFetch(`/api/songs/${songId}`, {
+		method: 'GET',
+	});
+	const data = await response.json();
+	dispatch(setSong(data));
+	return response;
 };
 
 export const login = (user) => async (dispatch) => {

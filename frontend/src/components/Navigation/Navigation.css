@@ -1,13 +1,13 @@
 root {
 	--primary-accent: #f50;
 	--light-gray: #f2f2f2;
-	--dark-gray: #fff;
+	--dark-gray: #333;
 }
 
 ul {
 	list-style-type: none;
 	font-family: sans-serif;
-	background: black;
+	background-color: #333;
 	width: 1180px;
 	justify-content: center;
 	align-items: center;
@@ -16,12 +16,30 @@ ul {
 a {
 	font-family: sans-serif;
 	text-decoration: none;
-	color: rgba(62, 181, 149, 1);
+	color: var(--primary-accent);
 	margin-right: 25px;
 }
 
 a:visited {
-	color: rgba(62, 181, 149, 1);
+	color: var(--primary-accent);
+}
+
+#create-account-btn {
+	padding: 4px 16px;
+	border: 1px solid var(--primary-accent);
+	border-radius: 4px;
+	color: var(--light-gray);
+	background-color: var(--primary-accent);
+	font-size: 14px;
+}
+
+#sign-in-btn {
+	padding: 4px 15px;
+	border: 1px solid var(--light-gray);
+	border-radius: 4px;
+	color: var(--light-gray);
+	font-size: 14px;
+	margin-left: 600px;
 }
 
 .hero-logo {
@@ -46,4 +64,8 @@ a:visited {
 	justify-content: center;
 	margin: 0;
 	padding: 0;
+}
+
+#profile-button {
+	margin-left: 800px;
 }

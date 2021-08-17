@@ -34,4 +34,50 @@ router.post(
 	})
 );
 
+router.get(
+	'/:id',
+	asyncHandler(async (req, res) => {
+		const { id } = req.params;
+		const song = await Song.findByPk(+id);
+
+		return res.json({ song });
+	})
+);
+
+router.put(
+	'/:id',
+	asyncHandler(async (req, res) => {
+		const { id } = req.params;
+		const { url, title } = req.params;
+		const song = await Song.findByPk(+id);
+
+		song.url = url ? url : song.url;
+		song.title = title ? title : song.title;
+
+		await song.save;
+
+		res.json({ song });
+	})
+);
+
+router.delete(
+	'/:id',
+	asyncHandler(async (req, res) => {
+		const { id } = req.params;
+		const song = await Song.findByPk(+id);
+		await song.destroy();
+
+		res.json({ song });
+	})
+);
+
+router.get(
+	'/all',
+	asyncHandler(async (req, res) => {
+		const songs = await Song.findAll();
+		console.log(songs);
+		// res.json({ songs });
+	})
+);
+
 module.exports = router;

@@ -10,11 +10,11 @@ module.exports = {
 			},
 			userId: {
 				type: Sequelize.INTEGER,
-				references: { model: 'Users' },
+				references: { model: { tableName: 'Users' } },
 			},
 			albumId: {
 				type: Sequelize.INTEGER,
-				references: { model: 'Albums' },
+				references: { model: { tableName: 'Albums' } },
 			},
 			url: {
 				allowNull: false,
@@ -28,12 +28,12 @@ module.exports = {
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+				defaultValue: Sequelize.fn('now'),
 			},
 			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('now'),
+				defaultValue: Sequelize.fn('now'),
 			},
 		});
 	},

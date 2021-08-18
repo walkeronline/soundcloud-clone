@@ -19,10 +19,11 @@ input {
 button {
 	width: 5em;
 	height: 2em;
-	background-color: #f50;
-	border: 2px solid #f50;
+	background-color: #6c1ed9;
+	border: 2px solid #6c1ed9;
 	border-radius: 5px;
 	cursor: pointer;
+	color: var(--light-gray);
 }
 
 button:hover {

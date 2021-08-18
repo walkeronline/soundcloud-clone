@@ -1,5 +1,5 @@
 :root {
-	--primary-accent: #f50;
+	--primary-accent: #6c1ed9;
 	--light-gray: #f2f2f2;
 	--dark-gray: #fff;
 }
@@ -27,7 +27,7 @@ body {
 	border: 1px solid var(--primary-accent);
 	border-radius: 4px;
 	color: var(--light-gray);
-	background: #f50;
+	background: #6c1ed9;
 	font-size: 18px;
 	font-weight: lighter;
 }

@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import './Splash.css';
 
 function SplashPage() {
+
+
 	return (
 		<div class="main">
 			<h2>What's next in music is first on SoundCloud</h2>
@@ -13,6 +16,13 @@ function SplashPage() {
 			<Link id="splash-acc-button" to="/signup">
 				Start uploading today
 			</Link>
+			<audio controls>
+				<source
+					src="https://mymusicdb.s3.us-east-2.amazonaws.com/1629301473375.mp3"
+					type="audio/mpeg"
+				/>
+				Your browser does not support the audio element.
+			</audio>
 		</div>
 	);
 }

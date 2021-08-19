@@ -5,6 +5,7 @@ root {
 }
 
 ul {
+	border-top: 2px solid var(--primary-accent);
 	list-style-type: none;
 	font-family: sans-serif;
 	background-color: #333;

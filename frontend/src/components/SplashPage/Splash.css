@@ -9,6 +9,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	font-family: sans-serif;
+	background: #131516;
+	color: var(--light-gray);
 }
 
 .main {

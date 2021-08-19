@@ -9,17 +9,69 @@ audio {
 }
 
 .comment-list {
-	background-color: var(--light-gray);
+	background-color: #131516;
+	margin-top: 20px;
+	padding-top: 20px;
 }
 .comment {
-	background-color: var(--light-gray);
+	display: flex;
+	flex-direction: column;
+
+	background-color: #131516;
+}
+
+.comment-date {
+	font-size: 12px;
+	margin-top: 0;
+}
+
+.comment-body {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.comment-user {
+	font-weight: bold;
 }
 
 .comment-container {
-	border: 2px solid red;
-	width: 1220px;
+	/* border: 1px solid red; */
+	width: 100%;
 }
 
-* {
-	border: 2px solid red;
+.song-image {
+	width: 340px;
+	height: 340px;
+	grid-template: 'img';
+	/* border: 1px solid orange; */
+}
+
+.song-title {
+	margin-bottom: 0;
+}
+
+.song-owner {
+	margin-top: 5px;
+}
+
+.song-info {
+	display: flex;
+	flex-direction: column;
+	grid-template: 'title';
+	/* border: 1px solid orange; */
+}
+
+.audio-player {
+	width: 875px;
+	/* border: 1px solid orange; */
+}
+
+.main-song-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: 1fr;
+	gap: 0px 0px;
+	grid-auto-flow: row;
+	grid-template-areas: 'main img';
 }

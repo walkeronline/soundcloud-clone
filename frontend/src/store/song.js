@@ -18,9 +18,9 @@ export const fetchSong = (song) => async (dispatch) => {
 		method: 'GET',
 	});
 	const data = await response.json();
-	dispatch(setSong(data.song));
-	console.log(data);
-	return response;
+	dispatch(setSong(data));
+	// console.log(data);
+	return data;
 };
 
 const initialState = { song: null };

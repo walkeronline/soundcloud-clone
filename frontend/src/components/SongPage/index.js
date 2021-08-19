@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
 import './SongPage.css';
+import './script.js';
 
 export default function SongPage() {
 	const { songId } = useParams();
@@ -16,6 +17,7 @@ export default function SongPage() {
 	useEffect(() => {
 		dispatch(songActions.fetchSong(songId));
 		setSong(currentSong);
+		console.log(currentSong);
 	}, []);
 
 	const convertDate = (str) => {
@@ -27,23 +29,28 @@ export default function SongPage() {
 		<div className="main">
 			{song?.song && (
 				<div>
-					<h1>{song.song.title}</h1>
-					<h2>
-						<Link to={`/users/${song.song.User?.id}`}>
-							{song.song.User?.username}
-						</Link>
-					</h2>
-					<audio controls>
-						<source src={song.song.songUrl} />
-					</audio>
-					<img
-						src={song.song.imageUrl}
-						alt={`${song.song.User?.username}'s profile`}
-					/>
+					<div className="main-song-container">
+						<div className="song-info">
+							<h1 className="song-title">{song.song.title}</h1>
+							<h2 className="song-owner">
+								<Link to={`/users/${song.song.User?.id}`}>
+									{song.song.User?.username}
+								</Link>
+							</h2>
+						</div>
+						<img
+							className="song-image"
+							src={song.song.imageUrl}
+							alt={`${song.song.User?.username}'s profile`}
+						/>
+						<audio id="audio" preload="auto" className="audio-player" controls>
+							<source src={song.song.songUrl} />
+						</audio>
+					</div>
 					<ul className="comment-list">
 						{song.song.Comments &&
 							song.song.Comments.map((comment) => (
-								<div class="comment-container">
+								<div className="comment-container">
 									<li className="comment" key={comment.id}>
 										<Link
 											to={`/users/${comment.User.id}`}
@@ -51,8 +58,10 @@ export default function SongPage() {
 										>
 											{comment.User.username}
 										</Link>
-										<p class="comment-body">{comment.body}</p>
-										<p class="comment-date">{convertDate(comment.createdAt)}</p>
+										<p className="comment-body">{comment.body}</p>
+										<p className="comment-date">
+											{convertDate(comment.createdAt)}
+										</p>
 									</li>
 								</div>
 							))}

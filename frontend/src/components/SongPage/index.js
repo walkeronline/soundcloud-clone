@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
 export default function SongPage() {
@@ -21,9 +22,24 @@ export default function SongPage() {
 			{song?.song && (
 				<div>
 					<h1>{song.song.title}</h1>
+					<h2>
+						<Link to={`/users/${song.song.User?.id}`}>
+							{song.song.User?.username}
+						</Link>
+					</h2>
 					<audio controls>
-						<source src={`${song.song.songUrl}`}></source>
+						<source src={song.song.songUrl} />
 					</audio>
+					<img
+						src={song.song.imageUrl}
+						alt={`${song.song.User?.username}'s profile`}
+					/>
+					<ul>
+						{song.song.Comment &&
+							song.song.Comment.map((comment) => (
+								<li key={comment.id}>comment.body</li>
+							))}
+					</ul>
 				</div>
 			)}
 		</div>

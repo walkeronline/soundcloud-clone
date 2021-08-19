@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Song, Comment, Album } = require('../../db/models');
 const {
 	singleMulterUpload,
 	singlePublicFileUpload,
@@ -50,6 +50,27 @@ router.post(
 		return res.json({
 			user,
 		});
+	})
+);
+
+router.get(
+	'/:username',
+	asyncHandler(async (req, res) => {
+		const { username } = req.params;
+
+		const user = await User.findOne({
+			where: { username },
+			include: { model: Comment },
+		});
+		const albums = await Album.findAll({ where: { userId: user.id } });
+		const songs = await Song.findAll({ where: { userId: user.id } });
+
+		user.dataValues.Songs = songs;
+		user.dataValues.Albums = albums;
+
+		console.log(user);
+
+		return res.json(user);
 	})
 );
 

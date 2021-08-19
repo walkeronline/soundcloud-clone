@@ -18,6 +18,11 @@ export default function SongPage() {
 		setSong(currentSong);
 	}, []);
 
+	const convertDate = (str) => {
+		const date = new Date(str).toDateString();
+		return date;
+	};
+
 	return (
 		<div className="main">
 			{song?.song && (
@@ -35,10 +40,21 @@ export default function SongPage() {
 						src={song.song.imageUrl}
 						alt={`${song.song.User?.username}'s profile`}
 					/>
-					<ul>
-						{song.song.Comment &&
-							song.song.Comment.map((comment) => (
-								<li key={comment.id}>comment.body</li>
+					<ul className="comment-list">
+						{song.song.Comments &&
+							song.song.Comments.map((comment) => (
+								<div class="comment-container">
+									<li className="comment" key={comment.id}>
+										<Link
+											to={`/users/${comment.User.id}`}
+											className="comment-user"
+										>
+											{comment.User.username}
+										</Link>
+										<p class="comment-body">{comment.body}</p>
+										<p class="comment-date">{convertDate(comment.createdAt)}</p>
+									</li>
+								</div>
 							))}
 					</ul>
 				</div>

@@ -10,7 +10,15 @@ module.exports = {
       */
 		return queryInterface.bulkInsert(
 			'Comments',
-			[{ userId: 1, songId: 1, body: 'Test comment' }],
+			[
+				{ userId: 1, songId: 1, body: 'This first' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+				{ userId: 1, songId: 1, body: 'Test comment' },
+			],
 			{}
 		);
 	},

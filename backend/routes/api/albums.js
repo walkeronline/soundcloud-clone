@@ -42,7 +42,19 @@ router.post(
 	validateSong,
 	asyncHandler(async (req, res) => {
 		const { userId, title, imageUrl } = req.body;
-		const album = await Album.create({ title, imageUrl });
+		const album = await Album.create({ title, imageUrl, userId });
+
+		return res.json(album);
+	})
+);
+
+router.delete(
+	'/:albumId',
+	asyncHandler(async (req, res) => {
+		const { albumId } = req.params;
+		const album = Album.findByPk(albumId);
+
+		await album.destroy();
 
 		return res.json(album);
 	})

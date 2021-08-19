@@ -44,7 +44,7 @@ router.get(
 			],
 		});
 
-		return res.json({ song });
+		return res.json(song);
 	})
 );
 
@@ -60,7 +60,7 @@ router.put(
 
 		await song.save;
 
-		res.json({ song });
+		res.json(song);
 	})
 );
 
@@ -71,7 +71,7 @@ router.delete(
 		const song = await Song.findByPk(+id);
 		await song.destroy();
 
-		res.json({ song });
+		res.json(song);
 	})
 );
 
@@ -84,7 +84,7 @@ router.get(
 			include: User,
 		});
 		// console.log(songs);
-		res.json({ songs });
+		res.json(songs);
 	})
 );
 

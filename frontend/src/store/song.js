@@ -13,7 +13,7 @@ const setSong = (song) => {
 };
 
 export const fetchSong = (song) => async (dispatch) => {
-	const { songId } = song;
+	const songId = song;
 	const response = await csrfFetch(`/api/songs/${songId}`, {
 		method: 'GET',
 	});

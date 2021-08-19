@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
+import './SongPage.css';
+
 export default function SongPage() {
 	const { songId } = useParams();
 	const dispatch = useDispatch();
@@ -14,11 +16,10 @@ export default function SongPage() {
 	useEffect(() => {
 		dispatch(songActions.fetchSong(songId));
 		setSong(currentSong);
-		console.log(song);
-	}, [song]);
+	}, []);
 
 	return (
-		<div class="main">
+		<div className="main">
 			{song?.song && (
 				<div>
 					<h1>{song.song.title}</h1>

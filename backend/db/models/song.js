@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
 			albumId: DataTypes.INTEGER,
 			url: DataTypes.STRING,
 			title: DataTypes.STRING,
+			songUrl: DataTypes.TEXT,
+			imageUrl: DataTypes.TEXT,
 		},
 		{}
 	);

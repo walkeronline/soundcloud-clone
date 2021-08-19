@@ -3,8 +3,6 @@ import { csrfFetch } from './csrf';
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
-const SET_SONG = 'song/setSong';
-
 const setUser = (user) => {
 	return {
 		type: SET_USER,
@@ -16,22 +14,6 @@ const removeUser = () => {
 	return {
 		type: REMOVE_USER,
 	};
-};
-
-const setSong = (song) => {
-	return {
-		type: SET_SONG,
-		payload: song,
-	};
-};
-
-export const getSong = (songId) => async (dispatch) => {
-	const response = await csrfFetch(`/api/songs/${songId}`, {
-		method: 'GET',
-	});
-	const data = await response.json();
-	dispatch(setSong(data));
-	return response;
 };
 
 export const login = (user) => async (dispatch) => {
@@ -54,9 +36,10 @@ const sessionReducer = (state = initialState, action) => {
 	let newState;
 	switch (action.type) {
 		case SET_USER:
-			newState = Object.assign({}, state);
-			newState.user = action.payload;
-			return newState;
+			// newState = Object.assign({}, state);
+			// newState.user = action.payload;
+			// return newState;
+			return { ...state, user: action.payload };
 		case REMOVE_USER:
 			newState = Object.assign({}, state);
 			newState.user = null;
@@ -94,6 +77,35 @@ export const logout = () => async (dispatch) => {
 	});
 	dispatch(removeUser());
 	return response;
+};
+
+export const createUser = (user) => async (dispatch) => {
+	const { images, image, username, email, password } = user;
+	const formData = new FormData();
+	formData.append('username', username);
+	formData.append('email', email);
+	formData.append('password', password);
+
+	// for multiple files
+	if (images && images.length !== 0) {
+		for (var i = 0; i < images.length; i++) {
+			formData.append('images', images[i]);
+		}
+	}
+
+	// for single file
+	if (image) formData.append('image', image);
+
+	const res = await csrfFetch(`/api/users/`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'multipart/form-data',
+		},
+		body: formData,
+	});
+
+	const data = await res.json();
+	dispatch(setUser(data.user));
 };
 
 export default sessionReducer;

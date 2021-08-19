@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Song } = require('../../db/models');
+const { User, Song, Comment } = require('../../db/models');
 
 const router = express.Router();
 
@@ -38,7 +38,7 @@ router.get(
 	'/:id',
 	asyncHandler(async (req, res) => {
 		const { id } = req.params;
-		const song = await Song.findByPk(+id);
+		const song = await Song.findByPk(+id, { include: [User, Comment] });
 
 		return res.json({ song });
 	})
@@ -77,6 +77,7 @@ router.get(
 		const { userId } = req.params;
 		const songs = await Song.findAll({
 			where: { userId },
+			include: User,
 		});
 		// console.log(songs);
 		res.json({ songs });

@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { User, Song, Comment } = require('../../db/models');
+const { Sequelize } = require('sequelize');
 
 const router = express.Router();
 
@@ -72,6 +73,17 @@ router.delete(
 		await song.destroy();
 
 		res.json(song);
+	})
+);
+
+router.get(
+	'/featured',
+	asyncHandler(async (req, res) => {
+		const songs = await Song.findAll({
+			order: Sequelize.literal('rand()'),
+			limit: 12,
+		});
+		res.json(songs);
 	})
 );
 

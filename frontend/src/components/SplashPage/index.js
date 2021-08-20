@@ -23,21 +23,21 @@ function SplashPage() {
 			<Link to="/songs/3">3</Link>
 			<Link to="/songs/4">4</Link>
 			<Link to="/songs/5">5</Link>
-      <Link to="/songs/6">6</Link>
+			<Link to="/songs/6">6</Link>
 			<Link to="/songs/7">7</Link>
 			<Link to="/songs/8">8</Link>
 			<Link to="/songs/9">9</Link>
 			<Link to="/songs/10">10</Link>
-      <Link to="/songs/1">1</Link>
-			<Link to="/songs/2">2</Link>
-			<Link to="/songs/3">3</Link>
-			<Link to="/songs/4">4</Link>
-			<Link to="/songs/5">5</Link>
-      <Link to="/songs/1">1</Link>
-			<Link to="/songs/2">2</Link>
-			<Link to="/songs/3">3</Link>
-			<Link to="/songs/4">4</Link>
-			<Link to="/songs/5">5</Link>
+			<Link to="/songs/11">11</Link>
+			<Link to="/songs/12">12</Link>
+			<Link to="/songs/13">13</Link>
+			<Link to="/songs/14">14</Link>
+			<Link to="/songs/15">15</Link>
+			<Link to="/songs/16">16</Link>
+			<Link to="/songs/17">17</Link>
+			<Link to="/songs/18">18</Link>
+			<Link to="/songs/19">19</Link>
+			<Link to="/songs/20">20</Link>
 		</div>
 	);
 }

@@ -14,9 +14,13 @@ export default function SongPage() {
 
 	useEffect(() => {
 		dispatch(songActions.fetchSong(songId));
-		setSong(currentSong);
-		console.log(currentSong);
 	}, []);
+
+	useEffect(() => {
+		if (currentSong) {
+			setSong(currentSong);
+		}
+	}, [currentSong]);
 
 	const convertDate = (str) => {
 		const date = new Date(str).toDateString();
@@ -31,7 +35,7 @@ export default function SongPage() {
 						<div className="song-info">
 							<h1 className="song-title">{song.song.title}</h1>
 							<h2 className="song-owner">
-								<Link to={`/users/${song.song.User?.id}`}>
+								<Link to={`/users/${song.song.User?.username}`}>
 									{song.song.User?.username}
 								</Link>
 							</h2>

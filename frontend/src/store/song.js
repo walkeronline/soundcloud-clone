@@ -1,11 +1,22 @@
 import { csrfFetch } from './csrf';
 
 const SET_SONG = 'song/setSong';
+const SET_FEATURED = 'song/setFeatured';
+const DELETE_SONG = 'song/deleteSong';
+const UPDATE_SONG = 'song/updateSong';
+const CREATE_SONG = 'song/createSong';
 
 const setSong = (song) => {
 	return {
 		type: SET_SONG,
 		payload: song,
+	};
+};
+
+const setFeatured = (songs) => {
+	return {
+		type: SET_FEATURED,
+		payload: songs,
 	};
 };
 
@@ -20,17 +31,6 @@ export const fetchSong = (song) => async (dispatch) => {
 	return data;
 };
 
-const SET_FEATURED = 'song/setFeatured';
-const DELETE_SONG = 'song/deleteSong';
-const UPDATE_SONG = 'song/updateSong';
-const CREATE_SONG = 'song/createSong';
-
-const setFeatured = (songs) => {
-	return {
-		type: SET_FEATURED,
-		payload: songs,
-	};
-};
 export const fetchFeatured = () => async (dispatch) => {
 	const response = await csrfFetch('/api/songs/featured', {
 		method: 'GET',
@@ -40,10 +40,9 @@ export const fetchFeatured = () => async (dispatch) => {
 	return data;
 };
 
-const initialState = { song: null };
+const initialState = { song: null, songs: null };
 
 const songReducer = (state = initialState, action) => {
-	let newState;
 	switch (action.type) {
 		case SET_SONG:
 			return { ...state, song: action.payload };

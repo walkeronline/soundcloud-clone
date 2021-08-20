@@ -1,33 +1,32 @@
 import { csrfFetch } from './csrf';
 
-const SET_USER = 'song/setUser';
-const UPDATE_USER = 'song/updateUser';
+const SET_CURRENT_USER = 'user/setUser';
+const UPDATE_USER = 'user/updateUser';
 
-const setUser = (user) => {
+const setCurrentUser = (user) => {
 	return {
-		type: SET_USER,
+		type: SET_CURRENT_USER,
 		payload: user,
 	};
 };
 
 export const fetchUser = (user) => async (dispatch) => {
-	const userId = user;
-	const response = await csrfFetch(`/api/users/${userId}`, {
+	const username = user;
+	const response = await csrfFetch(`/api/users/${username}`, {
 		method: 'GET',
 	});
 	const data = await response.json();
-	dispatch(setUser(data));
+	dispatch(setCurrentUser(data));
 	// console.log(data);
 	return data;
 };
 
-const initialState = { user: null };
+const initialState = { currUser: null };
 
 const userReducer = (state = initialState, action) => {
-	let newState;
 	switch (action.type) {
-		case SET_USER:
-			return { ...state, user: action.payload };
+		case SET_CURRENT_USER:
+			return { ...state, currUser: action.payload };
 		default:
 			return state;
 	}

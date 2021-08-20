@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import Featured from './Featured';
 
 import './Splash.css';
 
@@ -14,7 +15,25 @@ function SplashPage() {
 			<Link id="splash-acc-button" to="/signup">
 				Start uploading today
 			</Link>
+			<h3>Hear what's trending in the SoundCloud community</h3>
+			<Featured />
+			<Link to="/users/menitrust">Men I Trust</Link>
 			<Link to="/songs/1">1</Link>
+			<Link to="/songs/2">2</Link>
+			<Link to="/songs/3">3</Link>
+			<Link to="/songs/4">4</Link>
+			<Link to="/songs/5">5</Link>
+      <Link to="/songs/6">6</Link>
+			<Link to="/songs/7">7</Link>
+			<Link to="/songs/8">8</Link>
+			<Link to="/songs/9">9</Link>
+			<Link to="/songs/10">10</Link>
+      <Link to="/songs/1">1</Link>
+			<Link to="/songs/2">2</Link>
+			<Link to="/songs/3">3</Link>
+			<Link to="/songs/4">4</Link>
+			<Link to="/songs/5">5</Link>
+      <Link to="/songs/1">1</Link>
 			<Link to="/songs/2">2</Link>
 			<Link to="/songs/3">3</Link>
 			<Link to="/songs/4">4</Link>

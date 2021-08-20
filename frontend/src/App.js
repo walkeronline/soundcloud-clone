@@ -8,6 +8,7 @@ import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import SongPage from './components/SongPage';
 import TestAWS from './components/TestAWS';
+import UserProfile from './components/UserProfilePage';
 
 function App() {
 	const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
 					</Route>
 					<Route path="/songs/:songId">
 						<SongPage />
+					</Route>
+					<Route path="/users/:username">
+						<UserProfile />
 					</Route>
 					<Route path="/test">
 						<TestAWS />

@@ -1,7 +1,7 @@
 import { csrfFetch } from './csrf';
 
-const SET_USER = 'song/setSong';
-const UPDATE_USER = 'song/updateSong';
+const SET_USER = 'song/setUser';
+const UPDATE_USER = 'song/updateUser';
 
 const setUser = (user) => {
 	return {
@@ -10,9 +10,9 @@ const setUser = (user) => {
 	};
 };
 
-export const fetchUser = (song) => async (dispatch) => {
-	const songId = song;
-	const response = await csrfFetch(`/api/songs/${songId}`, {
+export const fetchUser = (user) => async (dispatch) => {
+	const userId = user;
+	const response = await csrfFetch(`/api/users/${userId}`, {
 		method: 'GET',
 	});
 	const data = await response.json();
@@ -23,7 +23,7 @@ export const fetchUser = (song) => async (dispatch) => {
 
 const initialState = { user: null };
 
-const songReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
 	let newState;
 	switch (action.type) {
 		case SET_USER:
@@ -33,4 +33,4 @@ const songReducer = (state = initialState, action) => {
 	}
 };
 
-export default songReducer;
+export default userReducer;

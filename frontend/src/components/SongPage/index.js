@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
 import './SongPage.css';
-import './script.js';
 
 export default function SongPage() {
 	const { songId } = useParams();
 	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.session.user);
 	const currentSong = useSelector((state) => state.song);
 	const [song, setSong] = useState(null);
 

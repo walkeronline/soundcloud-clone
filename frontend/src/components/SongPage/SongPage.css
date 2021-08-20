@@ -64,6 +64,7 @@ audio {
 .audio-player {
 	width: 875px;
 	/* border: 1px solid orange; */
+	background: rgba(0, 0, 0, 0);
 }
 
 .main-song-container {

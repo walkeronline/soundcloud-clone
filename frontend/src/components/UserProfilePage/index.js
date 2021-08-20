@@ -6,11 +6,15 @@ import * as userActions from '../../store/user';
 export default function UserProfile() {
 	const { username } = useParams();
 	const dispatch = useDispatch();
-	const sessionUser = useSelector((state) => state.sessionUser.user);
+	// const sessionUser = useSelector((state) => state.sessionUser.user);
 	const currentUser = useSelector((state) => state.user);
 	const [user, setUser] = useState(null);
 
 	useEffect(() => {
-		dispatch();
-	});
+		dispatch(userActions.fetchUser(username));
+		setUser(currentUser);
+		console.log(currentUser);
+	}, []);
+
+	return <div className="main-user-profile">{currentUser}</div>;
 }

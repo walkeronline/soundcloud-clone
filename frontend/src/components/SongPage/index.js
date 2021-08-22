@@ -4,7 +4,9 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
-// import './SongPage.css';
+import './SongPage.css';
+
+import '../../scripts/visualizer.js';
 
 export default function SongPage() {
 	const { songId } = useParams();
@@ -49,7 +51,7 @@ export default function SongPage() {
 							<source src={song.song.songUrl} />
 						</audio>
 					</div>
-					<ul className="comment-list">
+					{/* <ul className="comment-list">
 						{song.song.Comments &&
 							song.song.Comments.map((comment) => (
 								<div className="comment-container">
@@ -67,7 +69,7 @@ export default function SongPage() {
 									</li>
 								</div>
 							))}
-					</ul>
+					</ul> */}
 				</div>
 			)}
 		</div>

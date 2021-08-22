@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import Featured from './Featured';
 
+
 import './Splash.css';
 
 function SplashPage() {

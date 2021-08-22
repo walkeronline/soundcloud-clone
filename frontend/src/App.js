@@ -25,6 +25,7 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<SplashPage />
+						<BottomWaves />
 					</Route>
 					<Route path="/login">
 						<LoginFormPage />
@@ -43,7 +44,6 @@ function App() {
 					</Route>
 				</Switch>
 			)}
-			<BottomWaves />
 		</>
 	);
 }

@@ -1,0 +1,30 @@
+.waves-opacity {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	line-height: 0;
+	transform: rotate(180deg);
+}
+
+.waves-opacity svg {
+	position: relative;
+	display: block;
+	width: calc(100% + 1.3px);
+	height: 150px;
+	animation: grow 2s cubic-bezier(0, 0, 0.2, 1) 0s 1 normal forwards;
+}
+
+.waves-opacity .shape-fill {
+	fill: #6e85b2;
+}
+
+@keyframes grow {
+	from {
+		height: 0px;
+	}
+	to {
+		height: 250px;
+	}
+}

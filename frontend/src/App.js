@@ -9,6 +9,7 @@ import SplashPage from './components/SplashPage';
 import SongPage from './components/SongPage';
 import TestAWS from './components/TestAWS';
 import UserProfile from './components/UserProfilePage';
+import BottomWaves from './components/BottomWaves';
 
 function App() {
 	const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
 					</Route>
 				</Switch>
 			)}
+			<BottomWaves />
 		</>
 	);
 }

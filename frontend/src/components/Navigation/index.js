@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -9,30 +10,50 @@ function Navigation({ isLoaded }) {
 
 	let sessionLinks;
 	if (sessionUser) {
-		sessionLinks = <ProfileButton user={sessionUser} />;
+		sessionLinks = (
+			<>
+				<li>
+					<NavLink to="/about">About</NavLink>
+				</li>
+				<li>
+					<NavLink to="/upload">Upload</NavLink>
+				</li>
+				<li>
+					<NavLink to={`/users/${sessionUser.username}`}>
+						{sessionUser.username}
+					</NavLink>
+				</li>
+				<li>
+					<i class="fa-solid fa-ellipsis"></i>
+				</li>
+			</>
+		);
 	} else {
 		sessionLinks = (
 			<>
-				<NavLink to="/login" className="btn" id="sign-in-btn">
-					Sign in
-				</NavLink>
-				<NavLink to="/signup" className="btn" id="create-account-btn">
-					Create account
-				</NavLink>
+				<li>
+					<NavLink to="/about">About</NavLink>
+				</li>
+				<li>
+					<LoginFormModal />
+				</li>
+				<li>
+					<NavLink className="active" to="/signup">
+						Create account
+					</NavLink>
+				</li>
 			</>
 		);
 	}
 
 	return (
 		<div className="main-nav">
-			<ul>
-				<li>
-					<NavLink exact to="/">
-						<h1 className="hero-logo">SOUNDCLOUD</h1>
-					</NavLink>
-					{isLoaded && sessionLinks}
-				</li>
-			</ul>
+			<header>
+				<NavLink className="hero-logo" exact to="/">
+					SoundsLoud
+				</NavLink>
+				<ul>{isLoaded && sessionLinks}</ul>
+			</header>
 		</div>
 	);
 }

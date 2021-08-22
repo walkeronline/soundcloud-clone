@@ -6,8 +6,23 @@ import './Splash.css';
 
 function SplashPage() {
 	return (
-		<div className="main">
-			<h2>What's next in music is first on SoundCloud</h2>
+		<div className="main-container">
+			<section className="main-content">
+				<h1 className="motto">
+					What's next in music is first on{' '}
+					<Link to="/signup" className="emphasis">
+						SoundsLoud
+					</Link>
+				</h1>
+				<h2 className="sub-motto">
+					SoundsLoud gives you space to create, find your fans, and connect with
+					other artists.
+				</h2>
+				<Link id="splash-acc-button" className="active" to="/signup">
+					Start uploading today
+				</Link>
+			</section>
+			{/* <h2>What's next in music is first on SoundCloud</h2>
 			<h3>
 				Upload your first track and begin your journey. SoundCloud gives you
 				space to create, find your fans, and connect with other artists.
@@ -37,7 +52,7 @@ function SplashPage() {
 			<Link to="/songs/17">17</Link>
 			<Link to="/songs/18">18</Link>
 			<Link to="/songs/19">19</Link>
-			<Link to="/songs/20">20</Link>
+			<Link to="/songs/20">20</Link> */}
 		</div>
 	);
 }

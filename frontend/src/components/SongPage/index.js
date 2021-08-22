@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import * as songActions from '../../store/song';
 
-import './SongPage.css';
+// import './SongPage.css';
 
 export default function SongPage() {
 	const { songId } = useParams();

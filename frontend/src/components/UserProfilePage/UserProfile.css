@@ -7,3 +7,27 @@
 	width: 160px;
 	height: 160px;
 }
+
+body {
+	overflow: auto;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: transparent;
+	transform: rotate((180deg));
+}
+
+::-webkit-scrollbar-track {
+	/* display: none; */
+	background-color: #3e2c41;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #261c2c;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #6e85b2;
+}

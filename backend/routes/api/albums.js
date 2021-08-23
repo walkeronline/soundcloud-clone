@@ -31,7 +31,16 @@ router.get(
 	'/:albumId',
 	asyncHandler(async (req, res) => {
 		const { albumId } = req.params;
-		const album = await Album.findByPk(albumId);
+		const album = await Album.findByPk(albumId, {
+			include: User,
+		});
+		const albumSongs = await Song.findAll({
+			where: {
+				albumId,
+			},
+		});
+
+		album.dataValues.Songs = albumSongs;
 
 		return res.json(album);
 	})

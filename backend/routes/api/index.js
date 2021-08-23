@@ -3,6 +3,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const songsRouter = require('./songs.js');
 const albumsRouter = require('./albums.js');
+const commentsRouter = require('./comments.js');
 
 const asyncHandler = require('express-async-handler');
 const { User } = require('../../db/models');
@@ -19,6 +20,8 @@ router.use('/users', usersRouter);
 router.use('/songs', songsRouter);
 
 router.use('/albums', albumsRouter);
+
+router.use('/comments', commentsRouter);
 
 router.get(
 	'/set-token-cookie',

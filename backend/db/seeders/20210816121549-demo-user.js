@@ -12,6 +12,8 @@ module.exports = {
 					username: 'demo',
 					displayName: 'Demo User',
 					hashedPassword: bcrypt.hashSync('password'),
+					profileImageUrl:
+						'https://mymusicdb.s3.us-east-2.amazonaws.com/profile-pictures/demo.gif',
 				},
 				{
 					email: 'menitrust@user.io',
@@ -20,18 +22,6 @@ module.exports = {
 					hashedPassword: bcrypt.hashSync('password'),
 					profileImageUrl:
 						'https://d1htavafy9m5bl.cloudfront.net/eyJidWNrZXQiOiJwcm9kLXNpaC5zZWV0aWNrZXRzdXNhLnVzIiwia2V5IjoiMDQ2N2JmNmQtZmI3Mi00YTQ2LTllNzUtZWE5YjM0MTk2NDg0In0=',
-				},
-				{
-					email: faker.internet.email(),
-					username: 'FakeUser1',
-					displayName: 'Fake User 1',
-					hashedPassword: bcrypt.hashSync(faker.internet.password()),
-				},
-				{
-					email: faker.internet.email(),
-					username: 'FakeUser2',
-					displayName: 'Fake User 2',
-					hashedPassword: bcrypt.hashSync(faker.internet.password()),
 				},
 			],
 			{}

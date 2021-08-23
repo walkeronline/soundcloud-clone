@@ -23,10 +23,20 @@ const validateSong = [
 
 router.post(
 	'/',
-	validateSong,
 	asyncHandler(async (req, res) => {
-		const { userId, albumId, url, title } = req.body;
-		const song = await Song.create({ userId, albumId, url, title });
+		const { userId, albumId, url, title, songId } = req.body;
+		console.log(songId);
+		const useSong = await Song.findByPk(songId);
+		let songUrl = useSong.songUrl;
+		const song = await Song.create({
+			userId,
+			albumId,
+			url,
+			title,
+			songUrl: useSong.songUrl,
+		});
+
+		console.log(userId, albumId, url, title, songUrl);
 
 		return res.json({
 			song,

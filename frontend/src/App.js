@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignupFormPage';
 import * as sessionActions from './store/session';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
@@ -10,6 +8,13 @@ import SongPage from './components/SongPage';
 import TestAWS from './components/TestAWS';
 import UserProfile from './components/UserProfilePage';
 import BottomWaves from './components/BottomWaves';
+import Feed from './components/FeedPage';
+import About from './components/AboutPage';
+import SignupFormModal from './components/SignupFormModal';
+import LoginFormModal from './components/LoginFormModal';
+import SearchResults from './components/SearchResults';
+import AlbumPage from './components/AlbumPage';
+// import UploadForm from './components/UploadFormPage';
 
 function App() {
 	const dispatch = useDispatch();
@@ -28,11 +33,26 @@ function App() {
 						<BottomWaves />
 					</Route>
 					<Route path="/login">
-						<LoginFormPage />
+						<LoginFormModal />
 					</Route>
 					<Route path="/signup">
-						<SignupFormPage />
+						<SignupFormModal />
 					</Route>
+					<Route path="/feed">
+						<Feed />
+					</Route>
+					<Route path="/about">
+						<About />
+					</Route>
+					<Route path="/albums/:albumId">
+						<AlbumPage />
+					</Route>
+					<Route path="/search/:searchTerm">
+						<SearchResults />
+					</Route>
+					{/* <Route path="/upload">
+						<UploadForm />
+					</Route> */}
 					<Route path="/songs/:songId">
 						<SongPage />
 					</Route>

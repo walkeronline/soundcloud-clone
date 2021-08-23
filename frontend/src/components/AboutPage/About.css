@@ -1,0 +1,5 @@
+.profile-picture-blank {
+	width: 500px;
+	height: 500px;
+	background-image: linear-gradient(135deg, #6e85b2, #5c527f, #261c2c);
+}

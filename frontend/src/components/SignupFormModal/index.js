@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import SignupForm from './SignupForm'
+import SignupForm from './SignupForm';
 import { Link } from 'react-router-dom';
 
-import './SignupForm.css'
+import './SignupForm.css';
 
-function SignupFormModal() {
+function SignupFormModal({ bypass }) {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
 		<>
-			<Link className="active" onClick={() => setShowModal(true)}>Create account</Link>
+			<Link className="active" onClick={() => setShowModal(true)}>
+				{!bypass && 'Create account'}
+			</Link>
 			{showModal && (
-				<Modal onClose={() => setShowModal(false)}>
+				<Modal onClose={() => setShowModal(false)} customHeight={450}>
 					<SignupForm />
 				</Modal>
 			)}

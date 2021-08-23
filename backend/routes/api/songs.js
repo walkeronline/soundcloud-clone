@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { User, Song, Comment } = require('../../db/models');
+const { User, Song, Comment, Album } = require('../../db/models');
 const { Sequelize } = require('sequelize');
 
 const router = express.Router();
@@ -34,6 +34,33 @@ router.post(
 	})
 );
 
+router.post(
+	'/search',
+	asyncHandler(async (req, res) => {
+		const { searchTerm } = req.body;
+		console.log(searchTerm);
+		const songs = await Song.findAll({
+			where: {
+				title: {
+					[Sequelize.Op.like]: '%' + searchTerm + '%',
+				},
+			},
+		});
+	})
+);
+
+router.get(
+	'/feed',
+	asyncHandler(async (req, res) => {
+		const songs = await Song.findAll({
+			include: User,
+			limit: 100,
+			order: [['createdAt', 'DESC']],
+		});
+		res.json(songs);
+	})
+);
+
 router.get(
 	'/:id',
 	asyncHandler(async (req, res) => {
@@ -41,6 +68,7 @@ router.get(
 		const song = await Song.findByPk(+id, {
 			include: [
 				User,
+				Album,
 				{ model: Comment, include: User, order: ['createdAt', 'DESC'] },
 			],
 		});
@@ -73,17 +101,6 @@ router.delete(
 		await song.destroy();
 
 		res.json(song);
-	})
-);
-
-router.get(
-	'/featured',
-	asyncHandler(async (req, res) => {
-		const songs = await Song.findAll({
-			order: Sequelize.literal('rand()'),
-			limit: 12,
-		});
-		res.json(songs);
 	})
 );
 

@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import SignupFormModal from '../SignupFormModal';
 import LoginFormModal from '../LoginFormModal';
+import Search from './Search';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector((state) => state.session.user);
 
 	let sessionLinks;
+	let home = sessionUser ? '/feed' : '/';
 	if (sessionUser) {
 		sessionLinks = (
 			<>
@@ -25,7 +27,7 @@ function Navigation({ isLoaded }) {
 					</NavLink>
 				</li>
 				<li>
-					<i class="fa-solid fa-ellipsis"></i>
+					<ProfileButton user={sessionUser} />
 				</li>
 			</>
 		);
@@ -38,11 +40,6 @@ function Navigation({ isLoaded }) {
 				<li>
 					<LoginFormModal />
 				</li>
-				{/* <li>
-					<NavLink className="active" to="/signup">
-						Create account
-					</NavLink>
-				</li> */}
 				<li>
 					<SignupFormModal />
 				</li>
@@ -53,7 +50,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<div className="main-nav">
 			<header>
-				<NavLink className="hero-logo" exact to="/">
+				<NavLink className="hero-logo" exact to={home}>
 					SoundsLoud
 				</NavLink>
 				<ul>{isLoaded && sessionLinks}</ul>

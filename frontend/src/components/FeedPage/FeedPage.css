@@ -1,0 +1,18 @@
+.songs-container-feed {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 10%;
+}
+
+.songs-container-feed audio {
+	width: 600px;
+}
+
+.songs-header {
+	font-weight: bold;
+	letter-spacing: 1px;
+	font-family: 'Roboto', sans-serif;
+}

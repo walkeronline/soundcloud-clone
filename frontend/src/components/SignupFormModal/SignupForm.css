@@ -1,3 +1,7 @@
 div#modal-content {
-    height: 350px;
+	height: 350px;
+}
+
+#modal > .sign-up-modal {
+	height: 5000px;
 }

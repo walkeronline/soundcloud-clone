@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_SEARCH = 'session/search';
 
 const setUser = (user) => {
 	return {
@@ -14,6 +15,25 @@ const removeUser = () => {
 	return {
 		type: REMOVE_USER,
 	};
+};
+
+const setSearch = (search) => {
+	return {
+		type: SET_SEARCH,
+		payload: search,
+	};
+};
+
+export const search = (searchTerm) => async (dispatch) => {
+	const response = await csrfFetch('/api/songs/search', {
+		method: 'POST',
+		body: JSON.stringify({
+			searchTerm,
+		}),
+	});
+	const data = await response.json();
+	dispatch(setSearch(data));
+	return response;
 };
 
 export const login = (user) => async (dispatch) => {
@@ -30,7 +50,7 @@ export const login = (user) => async (dispatch) => {
 	return response;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, search: null };
 
 const sessionReducer = (state = initialState, action) => {
 	let newState;
@@ -44,6 +64,8 @@ const sessionReducer = (state = initialState, action) => {
 			newState = Object.assign({}, state);
 			newState.user = null;
 			return newState;
+		case SET_SEARCH:
+			return { ...state, search: action.payload };
 		default:
 			return state;
 	}
@@ -65,7 +87,7 @@ export const signup = (user) => async (dispatch) => {
 			username,
 			email,
 			password,
-			displayName
+			displayName,
 		}),
 	});
 	const data = await response.json();

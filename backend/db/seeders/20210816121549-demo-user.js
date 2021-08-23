@@ -18,6 +18,8 @@ module.exports = {
 					username: 'menitrust',
 					displayName: 'Men I Trust',
 					hashedPassword: bcrypt.hashSync('password'),
+					profileImageUrl:
+						'https://d1htavafy9m5bl.cloudfront.net/eyJidWNrZXQiOiJwcm9kLXNpaC5zZWV0aWNrZXRzdXNhLnVzIiwia2V5IjoiMDQ2N2JmNmQtZmI3Mi00YTQ2LTllNzUtZWE5YjM0MTk2NDg0In0=',
 				},
 				{
 					email: faker.internet.email(),

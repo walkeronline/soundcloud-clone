@@ -1,57 +1,10 @@
-/* :root {
-	--primary-accent: #6c1ed9;
-	--light-gray: #f2f2f2;
-	--dark-gray: #fff;
-}
-
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: sans-serif;
-	background: #131516;
-	color: var(--light-gray);
-}
-
-.main {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	width: 1180px;
-	height: 2533.97px;
-	padding: 0px 30px;
-	margin: 0px 136px;
-}
-
-#splash-acc-button {
-	padding: 10px 25px;
-	border: 1px solid var(--primary-accent);
-	border-radius: 4px;
-	color: var(--light-gray);
-	background: #6c1ed9;
-	font-size: 18px;
-	font-weight: lighter;
-} */
-
 section.main-content {
-	/* display: flex;
-	justify-content: center;
-	align-items: flex-start;
-	text-align: left;
-	color: #fff;
-	position: absolute;
-	top: 25%;
-	left: 50%; */
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
 	text-align: center;
 	color: #fff;
-	/* position: relative;
-	top: 20%;
-	left: 20%; */
 }
 
 div.main-container {
@@ -60,8 +13,6 @@ div.main-container {
 	align-items: flex-start;
 	text-align: center;
 	position: absolute;
-	/* top: 50;
-	left: 50; */
 	top: 33%;
 	left: 0;
 	min-width: 100vw;
@@ -77,6 +28,32 @@ h1.motto {
 .emphasis {
 	text-decoration: none;
 	color: #6e85b2;
+}
+
+.splash-modal {
+	margin-top: 20px;
+	text-decoration: none;
+	padding: 10px 20px;
+	font-weight: bold;
+	color: #fff;
+	font-size: 20px;
+	padding-bottom: 12px;
+	opacity: 0;
+	background: #6e85b2;
+	color: #261c2c;
+	font-weight: 400;
+	border-radius: 20px;
+	border: 0;
+	animation: up-fade 1s ease-out 1s 1 normal forwards;
+}
+
+.splash-modal a {
+	text-decoration: none;
+	color: #261c2c;
+}
+
+.splash-modal a::before {
+	content: 'Start uploading today 🎧';
 }
 
 h2.sub-motto {
@@ -95,7 +72,6 @@ a#splash-acc-button {
 	font-weight: bold;
 	color: #fff;
 	font-size: 20px;
-	/* padding-top: 10px; */
 	padding-bottom: 12px;
 	opacity: 0;
 	animation: up-fade 1s ease-out 1s 1 normal forwards;
@@ -111,28 +87,7 @@ a#splash-acc-button.active {
 	color: #261c2c;
 	font-weight: 400;
 	border-radius: 20px;
-	/* padding-top: 5px; */
 }
-/* h1.motto::before {
-	position: relative;
-	left: 10px;
-	bottom: 5px;
-	content: '|';
-	margin-right: 20px;
-	text-align: center;
-	text-shadow: 3px 0px 5px white;
-	font-size: 50px;
-	animation: fade-out 1s linear 1s 1 normal forwards;
-}
-
-@keyframes fade-out {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-} */
 
 @keyframes fade-in {
 	from {

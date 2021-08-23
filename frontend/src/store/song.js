@@ -32,7 +32,7 @@ export const fetchSong = (song) => async (dispatch) => {
 };
 
 export const fetchFeatured = () => async (dispatch) => {
-	const response = await csrfFetch('/api/songs/featured', {
+	const response = await csrfFetch('/api/songs/feed', {
 		method: 'GET',
 	});
 	const data = await response.json();

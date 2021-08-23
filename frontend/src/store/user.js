@@ -17,7 +17,6 @@ export const fetchUser = (user) => async (dispatch) => {
 	});
 	const data = await response.json();
 	dispatch(setCurrentUser(data));
-	// console.log(data);
 	return data;
 };
 

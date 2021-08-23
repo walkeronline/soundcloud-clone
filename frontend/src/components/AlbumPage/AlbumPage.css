@@ -32,3 +32,9 @@
 h3.date {
 	color: #261c2c;
 }
+
+.buttons-manage {
+	position: absolute;
+	top: 100%;
+	left: 0;
+}

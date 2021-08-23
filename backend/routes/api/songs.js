@@ -25,7 +25,6 @@ router.post(
 	'/',
 	asyncHandler(async (req, res) => {
 		const { userId, albumId, url, title, songId } = req.body;
-		console.log(songId);
 		const useSong = await Song.findByPk(songId);
 		let songUrl = useSong.songUrl;
 		const song = await Song.create({
@@ -35,8 +34,6 @@ router.post(
 			title,
 			songUrl: useSong.songUrl,
 		});
-
-		console.log(userId, albumId, url, title, songUrl);
 
 		return res.json({
 			song,
@@ -48,7 +45,6 @@ router.post(
 	'/search',
 	asyncHandler(async (req, res) => {
 		const { searchTerm } = req.body;
-		console.log(searchTerm);
 		const songs = await Song.findAll({
 			where: {
 				title: {
@@ -104,10 +100,16 @@ router.put(
 );
 
 router.delete(
-	'/:id',
+	'/',
 	asyncHandler(async (req, res) => {
-		const { id } = req.params;
-		const song = await Song.findByPk(+id);
+		const { songId } = req.body;
+		const comments = await Comment.findAll({
+			where: {
+				songId,
+			},
+		});
+		comments.map((comment) => comment.destroy);
+		const song = await Song.findByPk(+songId);
 		await song.destroy();
 
 		res.json(song);
@@ -122,7 +124,6 @@ router.get(
 			where: { userId },
 			include: User,
 		});
-		// console.log(songs);
 		res.json(songs);
 	})
 );

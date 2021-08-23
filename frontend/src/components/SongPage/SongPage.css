@@ -73,7 +73,7 @@ div.main-song-container {
 	justify-content: center;
 	align-items: flex-start;
 	position: absolute;
-	top: 72%;
+	top: 75%;
 	left: 35%;
 	width: 100%;
 }
@@ -131,4 +131,19 @@ div.main-song-container {
 .album-href::before {
 	color: #fff;
 	content: 'Album - ';
+}
+
+.eee {
+	width: 100px;
+	padding: 6px 15px;
+	border: 0;
+	text-decoration: none;
+	padding: 6px 15px;
+	color: #fff;
+	background: #6e85b2;
+	border-radius: 20px;
+	margin: 0 auto;
+	height: 33px;
+	cursor: pointer;
+	margin-top: 10px;
 }

@@ -58,10 +58,10 @@ router.post(
 );
 
 router.delete(
-	'/:albumId',
+	'/',
 	asyncHandler(async (req, res) => {
-		const { albumId } = req.params;
-		const album = Album.findByPk(albumId);
+		const { albumId } = req.body;
+		const album = await Album.findByPk(albumId);
 
 		await album.destroy();
 

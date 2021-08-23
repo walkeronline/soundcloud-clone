@@ -14,7 +14,6 @@ export default function SongPage() {
 	useEffect(() => {
 		dispatch(songActions.fetchFeatured());
 		setSong(currentSong);
-		console.log(currentSong);
 	}, []);
 
 	return <div className="featured"></div>;

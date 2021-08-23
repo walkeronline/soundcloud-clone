@@ -76,14 +76,15 @@ export default function UserProfile() {
 							))}
 						</div>
 						<div className="user-albums">
+							<h2 className="songs-header">{`${currentUser.currUser.username}'s albums`}</h2>
 							{currentUser.currUser.Albums.map((album) => (
 								<Link to={`/albums/${album.id}`}>
-									<h3>{album.title}</h3>
 									<img
 										className="mini-album-pic"
 										src={album.imageUrl}
 										alt={album.title}
 									/>
+									<h3>{album.title}</h3>
 								</Link>
 							))}
 						</div>

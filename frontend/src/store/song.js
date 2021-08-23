@@ -14,6 +14,18 @@ const setSong = (song) => {
 	};
 };
 
+export const deleteSong = (song) => async (dispatch) => {
+	const { songId } = song;
+	const response = await csrfFetch('/api/songs', {
+		method: 'DELETE',
+		body: JSON.stringify({
+			songId,
+		}),
+	});
+	const data = await response.json();
+	return response;
+};
+
 export const createComment = (comment) => async (dispatch) => {
 	const { body, songId, userId } = comment;
 	const response = await csrfFetch('/api/comments', {
@@ -23,6 +35,26 @@ export const createComment = (comment) => async (dispatch) => {
 			songId,
 			body,
 		}),
+	});
+	const data = await response.json();
+	return response;
+};
+
+export const editComment = (comment) => async (dispatch) => {
+	const { body, commentId } = comment;
+	const response = await csrfFetch('/api/comments', {
+		method: 'PUT',
+		body: JSON.stringify({ body, commentId }),
+	});
+	const data = await response.json();
+	return response;
+};
+
+export const deleteComment = (comment) => async (dispatch) => {
+	const { commentId } = comment;
+	const response = await csrfFetch('/api/comments', {
+		method: 'DELETE',
+		body: JSON.stringify({ commentId }),
 	});
 	const data = await response.json();
 	return response;
@@ -61,7 +93,6 @@ export const fetchSong = (song) => async (dispatch) => {
 	});
 	const data = await response.json();
 	dispatch(setSong(data));
-	// console.log(data);
 	return data;
 };
 

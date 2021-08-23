@@ -6,6 +6,7 @@ import * as albumActions from '../../store/album';
 
 export default function AlbumPage() {
 	const { albumId } = useParams();
+	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const currentAlbum = useSelector((state) => state.album);
 	const [album, setAlbum] = useState(null);
@@ -19,6 +20,18 @@ export default function AlbumPage() {
 			setAlbum(currentAlbum);
 		}
 	}, [currentAlbum]);
+
+	const editAlbum = (e) => {
+		e.preventDefault();
+	};
+
+	const deleteAlbum = (e) => {
+		e.preventDefault();
+		const albumId = e.target.id.split('-')[1];
+
+		dispatch(albumActions.deleteAlbum({ albumId }));
+		window.location.href = `/users/${sessionUser?.username}`;
+	};
 
 	const convertDate = (str) => {
 		const date = new Date(str).toDateString().split(' ').slice(1).join(' ');
@@ -49,6 +62,24 @@ export default function AlbumPage() {
 							<h3 className="date">{convertDate(album.album.createdAt)}</h3>
 						</div>
 					</div>
+					{sessionUser?.id === album.album.userId && (
+						<div class="buttons-manage">
+							<button
+								onClick={editAlbum}
+								id={`edit-${album.album.id}`}
+								className="eee"
+							>
+								Edit
+							</button>
+							<button
+								onClick={deleteAlbum}
+								id={`del-${album.album.id}`}
+								className="eee"
+							>
+								Delete
+							</button>
+						</div>
+					)}
 					<div className="album-songs">
 						{album.album.Songs.map((song) => (
 							<>

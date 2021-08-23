@@ -24,6 +24,19 @@ router.get(
 	})
 );
 
+router.put(
+	'/',
+	asyncHandler(async (req, res) => {
+		const { body, commentId } = req.body;
+		const comment = await Comment.findByPk(commentId);
+
+		comment.body = body;
+		await comment.save();
+
+		return res.json(comment);
+	})
+);
+
 router.post(
 	'/',
 	validateComment,
@@ -35,4 +48,15 @@ router.post(
 	})
 );
 
+router.delete(
+	'/',
+	asyncHandler(async (req, res) => {
+		const { commentId } = req.body;
+		const comment = await Comment.findByPk(commentId);
+
+		await comment.destroy();
+
+		return res.json(comment);
+	})
+);
 module.exports = router;

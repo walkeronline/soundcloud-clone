@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 // import ScriptTag from 'react-script-tag'
 import * as songActions from '../../store/song';
+import LoginFormModal from '../LoginFormModal';
+import EditCommentModal from './EditCommentModal';
 
 import './SongPage.css';
 
@@ -16,6 +18,7 @@ export default function SongPage() {
 	const sessionUser = useSelector((state) => state.session.user);
 	const [song, setSong] = useState(null);
 	const [comment, setComment] = useState('');
+	const [newComment, setNewComment] = useState('');
 	const [imageUrl, setImageUrl] = useState(
 		'https://mymusicdb.s3.us-east-2.amazonaws.com/profile-pictures/default.png'
 	);
@@ -34,6 +37,49 @@ export default function SongPage() {
 		});
 	};
 
+	const deleteComment = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const [commentId, userId] = e.target.id.split('-');
+		dispatch(songActions.deleteComment({ commentId }));
+		const comment = document.getElementById(commentId);
+		comment.style.display = 'none';
+	};
+
+	const editComment = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const [commentId, userId] = e.target.id.split('-');
+
+		const commentBody = document.getElementById(`${commentId}-body`);
+		const body = commentBody.innerText;
+	};
+
+	const editButtons = (commentId, userId) => {
+		if (userId === sessionUser.id) {
+			return (
+				<>
+					<EditCommentModal commentId={commentId} />
+					<button
+						onClick={deleteComment}
+						id={`${commentId}-${userId}-del`}
+						className="del-button"
+					>
+						Delete
+					</button>
+				</>
+			);
+		} else {
+			return <></>;
+		}
+	};
+
+	const deleteSong = (e) => {
+		e.preventDefault();
+		const songId = e.target.id.split('-')[2];
+		dispatch(songActions.deleteSong({ songId }));
+		window.location.href = '/feed';
+	};
 
 	useEffect(() => {
 		dispatch(songActions.fetchSong(songId));
@@ -44,14 +90,6 @@ export default function SongPage() {
 			setSong(currentSong);
 		}
 	}, [currentSong]);
-
-	useEffect(() => {
-		const script = document.createElement('script');
-		script.src = '../visualizer.js';
-		script.async = true;
-		document.body.appendChild(script);
-	}, [song]);
-
 	const convertDate = (str) => {
 		const date = new Date(str).toDateString().split(' ').slice(1).join(' ');
 		return date;
@@ -90,6 +128,17 @@ export default function SongPage() {
 						>
 							<source src={song.song.songUrl} />
 						</audio>
+						{sessionUser.id === song.song.User.id && (
+							<>
+								<button
+									className="eee"
+									onClick={deleteSong}
+									id={`del-song-${song.song.id}`}
+								>
+									Delete
+								</button>
+							</>
+						)}
 					</div>
 					<div className="song-comments">
 						<div className="add-comment">
@@ -109,7 +158,11 @@ export default function SongPage() {
 						{song.song.Comments &&
 							song.song.Comments.map((comment) => {
 								return (
-									<div className="comment-container" key={comment.id}>
+									<div
+										className="comment-container"
+										id={comment.id}
+										key={comment.id}
+									>
 										<div className="image-name-container">
 											<Link to={`/users/${comment.User.username}`}>
 												<img
@@ -135,7 +188,10 @@ export default function SongPage() {
 												</h3>
 											</div>
 										</div>
-										<p className="comment-body">{comment.body}</p>
+										<p id={`${comment.id}-body`} className="comment-body">
+											{comment.body}
+										</p>
+										{editButtons(comment.id, comment.userId)}
 									</div>
 								);
 							})}

@@ -16,7 +16,6 @@ export default function SearchResults() {
 	useEffect(() => {
 		if (searchRes) {
 			setResults(searchRes);
-			console.log(results);
 		}
 	}, [searchRes]);
 

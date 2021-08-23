@@ -19,6 +19,16 @@ function LoginForm() {
 		);
 	};
 
+	const demoLogin = (e) => {
+		e.preventDefault();
+		return dispatch(
+			sessionActions.login({ credential: 'demo', password: 'password' })
+		).catch(async (res) => {
+			const data = await res.json();
+			if (data && data.errors) setErrors(data.errors);
+		});
+	};
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<ul>
@@ -45,6 +55,9 @@ function LoginForm() {
 				/>
 			</label>
 			<button type="submit">Log In</button>
+			<button type="submit" onClick={demoLogin}>
+				Demo
+			</button>
 		</form>
 	);
 }

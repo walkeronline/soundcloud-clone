@@ -16,7 +16,7 @@ function Navigation({ isLoaded }) {
 		sessionLinks = (
 			<>
 				<li>
-					<NavLink to="/about">About</NavLink>
+					<NavLink to="/feed">Feed</NavLink>
 				</li>
 				<li>
 					<NavLink to="/upload">Upload</NavLink>

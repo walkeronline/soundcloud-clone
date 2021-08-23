@@ -13,10 +13,27 @@ export default function SongPage() {
 	const { songId } = useParams();
 	const dispatch = useDispatch();
 	const currentSong = useSelector((state) => state.song);
+	const sessionUser = useSelector((state) => state.session.user);
 	const [song, setSong] = useState(null);
+	const [comment, setComment] = useState('');
 	const [imageUrl, setImageUrl] = useState(
 		'https://mymusicdb.s3.us-east-2.amazonaws.com/profile-pictures/default.png'
 	);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		dispatch(
+			songActions.createComment({
+				body: comment,
+				songId,
+				userId: sessionUser.id,
+			})
+		).then(() => {
+			setComment('');
+		});
+	};
+
 
 	useEffect(() => {
 		dispatch(songActions.fetchSong(songId));
@@ -49,21 +66,22 @@ export default function SongPage() {
 							<h1 className="song-title">{song.song.title}</h1>
 							<h2 className="song-owner">
 								<Link to={`/users/${song.song.User?.username}`}>
-									{song.song.User?.username}
+									@{song.song.User?.username}
 								</Link>
 							</h2>
+
 							<h3 className="date">{convertDate(song.song.createdAt)}</h3>
-							{song.song.albumId && (
-								<Link to={`/albums/${song.song.albumId}`}>
-									{song.song.Album?.title}
-								</Link>
-							)}
 						</div>
 						<img
 							className="song-image"
 							src={song.song.imageUrl ? song.song.imageUrl : imageUrl}
 							alt={`${song.song.User?.username}'s profile`}
 						/>
+						{song.song.albumId && (
+							<Link className="album-href" to={`/albums/${song.song.albumId}`}>
+								{`${song.song.Album?.title}`}
+							</Link>
+						)}
 						<audio
 							id="audio"
 							preload="auto"
@@ -74,27 +92,51 @@ export default function SongPage() {
 						</audio>
 					</div>
 					<div className="song-comments">
+						<div className="add-comment">
+							<form onSubmit={handleSubmit}>
+								<label>
+									<input
+										type="textarea"
+										placeholder="Add a comment"
+										value={comment}
+										onChange={(e) => setComment(e.target.value)}
+									></input>
+								</label>
+								<button type="submit">Post</button>
+							</form>
+						</div>
+						<h3 className="comments-header">Comments</h3>
 						{song.song.Comments &&
 							song.song.Comments.map((comment) => {
 								return (
-									<>
-										<img
-											src={
-												comment.User.profileImageUrl
-													? comment.User.profileImageUrl
-													: imageUrl
-											}
-											alt={`${comment.User.username}'s profile`}
-										/>
-										<Link
-											to={`/users/${comment.User.id}`}
-											className="comment-user"
-										>
-											{comment.User.username}
-										</Link>
-										<h3 className="date">{convertDate(comment.createdAt)}</h3>
+									<div className="comment-container" key={comment.id}>
+										<div className="image-name-container">
+											<Link to={`/users/${comment.User.username}`}>
+												<img
+													className="mini-profile-img"
+													src={
+														comment.User.profileImageUrl
+															? comment.User.profileImageUrl
+															: imageUrl
+													}
+													alt={`${comment.User.username}'s profile`}
+												/>
+											</Link>
+
+											<div className="name-date-container">
+												<Link
+													to={`/users/${comment.User.username}`}
+													className="comment-user"
+												>
+													{comment.User.username}
+												</Link>
+												<h3 className="date">
+													{convertDate(comment.createdAt)}
+												</h3>
+											</div>
+										</div>
 										<p className="comment-body">{comment.body}</p>
-									</>
+									</div>
 								);
 							})}
 					</div>

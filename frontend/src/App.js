@@ -14,6 +14,7 @@ import SignupFormModal from './components/SignupFormModal';
 import LoginFormModal from './components/LoginFormModal';
 import SearchResults from './components/SearchResults';
 import AlbumPage from './components/AlbumPage';
+import UploadForm from './components/UploadFormPage/UploadForm';
 // import UploadForm from './components/UploadFormPage';
 
 function App() {
@@ -43,6 +44,9 @@ function App() {
 					</Route>
 					<Route path="/about">
 						<About />
+					</Route>
+					<Route path="/upload">
+						<UploadForm />
 					</Route>
 					<Route path="/albums/:albumId">
 						<AlbumPage />

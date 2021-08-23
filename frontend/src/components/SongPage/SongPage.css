@@ -1,7 +1,7 @@
 div.main-song-container {
 	position: absolute;
 	width: 100%;
-	top: 200px;
+	top: 125px;
 	left: 0;
 	display: flex;
 	flex-direction: column;
@@ -38,6 +38,7 @@ div.main-song-container {
 	font-family: 'Roboto', sans-serif;
 	text-decoration: none;
 	color: #6e85b2;
+	margin-bottom: 10px;
 }
 
 .song-image {
@@ -53,9 +54,81 @@ div.main-song-container {
 }
 
 .date {
-	margin-top: 10px;
+	margin-top: 0px;
 	font-size: 14px;
 	font-family: monospace;
 	font-weight: bolder;
 	color: #261c2c;
+}
+
+.mini-profile-img {
+	width: 50px;
+	height: 50px;
+	border-radius: 100%;
+}
+
+.song-comments {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	position: absolute;
+	top: 72%;
+	left: 35%;
+	width: 100%;
+}
+
+.comments-header {
+	color: #fff;
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+.comment-user {
+	color: #6e85b2;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+.image-name-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.name-date-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	margin-left: 10px;
+	padding-bottom: 10px;
+}
+
+.name-date-container > * {
+	margin: 0;
+}
+
+.song-comments h3.date {
+	color: #6e85b2;
+}
+
+.song-comments .comment-body {
+	color: #fff;
+	margin-bottom: 15px;
+	margin-top: 8px;
+}
+
+.album-href {
+	text-decoration: none;
+	margin-top: 0px;
+	margin-bottom: 25px;
+	font-size: 17px;
+	color: #6e85b2;
+}
+
+.album-href::before {
+	color: #fff;
+	content: 'Album - ';
 }

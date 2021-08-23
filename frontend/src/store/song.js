@@ -5,12 +5,46 @@ const SET_FEATURED = 'song/setFeatured';
 const DELETE_SONG = 'song/deleteSong';
 const UPDATE_SONG = 'song/updateSong';
 const CREATE_SONG = 'song/createSong';
+const CREATE_COMMENT = 'song/createComment';
 
 const setSong = (song) => {
 	return {
 		type: SET_SONG,
 		payload: song,
 	};
+};
+
+export const createComment = (comment) => async (dispatch) => {
+	const { body, songId, userId } = comment;
+	const response = await csrfFetch('/api/comments', {
+		method: 'POST',
+		body: JSON.stringify({
+			userId,
+			songId,
+			body,
+		}),
+	});
+	const data = await response.json();
+	return response;
+};
+
+export const uploadSong = (song) => async (dispatch) => {
+	const { userId, albumId, url, title, songUrl, imageUrl, songId } = song;
+	const response = await csrfFetch('/api/songs', {
+		method: 'POST',
+		body: JSON.stringify({
+			userId,
+			albumId,
+			url,
+			title,
+			songUrl,
+			imageUrl,
+			songId,
+		}),
+	});
+	dispatch(setSong(data));
+	const data = await response.json();
+	return response;
 };
 
 const setFeatured = (songs) => {
@@ -48,6 +82,7 @@ const songReducer = (state = initialState, action) => {
 			return { ...state, song: action.payload };
 		case SET_FEATURED:
 			return { ...state, songs: action.payload };
+
 		default:
 			return state;
 	}
